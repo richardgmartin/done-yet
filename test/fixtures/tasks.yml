@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  activity: MyString
+  completed: false
+  complete_date: 2014-07-22
+  phone: MyString
+  message: MyText
+  task_id: 1
+
+two:
+  activity: MyString
+  completed: false
+  complete_date: 2014-07-22
+  phone: MyString
+  message: MyText
+  task_id: 1
