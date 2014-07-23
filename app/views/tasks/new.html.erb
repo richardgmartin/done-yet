@@ -1,0 +1,39 @@
+<h1>Create a New Task</h1>
+
+<%= form_for @task do |f| %>
+
+  <div class="field">
+    <p>
+      <%= f.label :activity %>:
+      <%= f.text_field :activity %><br />
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <%= f.label :message %>:
+      <%= f.text_field :message %><br />
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <%= f.label :complete_date %>:
+      <%= f.date_field :complete_date %><br />
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <%= collection_select(:task, :tasker_id, @taskers, :id, :name) %>
+    </p>
+  </div>
+
+
+  <div class="actions">
+    <p>
+      <%= f.submit "Submit" %>
+    </p>
+  </div>
+
+<% end %>

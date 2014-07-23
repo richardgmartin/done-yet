@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722131629) do
+ActiveRecord::Schema.define(version: 20140722195837) do
 
   create_table "taskers", force: true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140722131629) do
     t.integer  "tasker_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "taskmaster_id"
   end
 
 end

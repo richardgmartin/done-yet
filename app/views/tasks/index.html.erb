@@ -1,0 +1,14 @@
+<h1>Donely</h1>
+<p>Is it done yet?</p>
+
+<div>
+<ul>
+  <% @task.each do |t| %>
+    <li><%= t.tasker.name %></li>
+    <li><%= t.activity %></li>
+    <li><%= t.message %></li>
+    <li><%= t.complete_date %></li>
+    <li><%= t.completed %></li>
+  <% end %>
+</ul>
+</div>
