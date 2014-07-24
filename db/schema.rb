@@ -11,21 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722195837) do
+ActiveRecord::Schema.define(version: 20140723214600) do
 
-  create_table "taskers", force: true do |t|
+  create_table "recipients", force: true do |t|
     t.string   "name"
     t.string   "phone"
-    t.integer  "taskmaster_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "taskmasters", force: true do |t|
-    t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -33,10 +27,19 @@ ActiveRecord::Schema.define(version: 20140722195837) do
     t.boolean  "completed"
     t.date     "complete_date"
     t.text     "message"
-    t.integer  "tasker_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "taskmaster_id"
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone"
+    t.boolean  "admin"
   end
 
 end

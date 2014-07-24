@@ -1,9 +1,10 @@
-<h1>Donely</h1><h3>Tell me its done, please.</h3>
+<h1>Donely</h1>
+<h3>Tell me its done, please.</h3>
 <hr />
 
 <div>
   <% @task.each do |t| %>
-    <p>Tasker: <%= t.tasker.name %></p>
+    <p>Tasker: <%= t.recipient.name %></p>
     <p>Task: <%= t.activity %></p>
     <p>Task Message: <%= t.message %></p>
     <p>Complete Date: <%= t.complete_date %></p>

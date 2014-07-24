@@ -5,14 +5,14 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @taskmaster = Taskmaster.first
-    @taskers = @taskmaster.taskers
+    @user = User.first
+    @recipients = @user.recipients
   end
 
   def create
     @task = Task.new(task_params)
 
-    @task.taskmaster = Taskmaster.first
+    @task.user = User.first
 
     if @task.save
       redirect_to tasks_url
@@ -21,11 +21,28 @@ class TasksController < ApplicationController
     end
   end
 
+  def receive_text
+
+    @message_body = params["Body"]
+    # "13"
+    @from_number = params["From"]
+
+    @task = Task.find(@message_body)
+
+    @task.completed = true
+
+    @task.save
+
+    render nothing: true
+
+    # SMSLogger.log_text_message @from_number, @message_body
+  end
+
   def edit
   end
 
   private
   def task_params
-    params.require(:task).permit(:activity, :message, :complete_date, :tasker_id)
+    params.require(:task).permit(:activity, :message, :complete_date, :recipient_id)
   end
 end
