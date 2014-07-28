@@ -4,10 +4,10 @@
 
 <div>
   <% @task.each do |t| %>
-    <p>Tasker: <%= t.recipient.name %></p>
+    <p>Recipient: <%= t.recipient.name %></p>
     <p>Task: <%= t.activity %></p>
     <p>Task Message: <%= t.message %></p>
-    <p>Complete Date: <%= t.complete_date %></p>
+    <p>Text Delivery Date: <%= t.schedule_time %></p>
     <p>Status: <%= t.completed %></p>
     <hr />
   <% end %>

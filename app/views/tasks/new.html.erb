@@ -12,18 +12,23 @@
   <div class="field">
     <p>
       <%= f.label :message %>:
-      <%= f.text_field :message %><br />
+      <%= f.text_area :message %><br />
     </p>
   </div>
 
   <div class="field">
+    <br />
     <p>
-      <%= f.label :complete_date %>:
-      <%= f.date_field :complete_date %><br />
+      <%= f.label :schedule_time, "Schedule Text Delivery Date" %>:
+      <%= f.date_select :schedule_time %><br />
+      <%= f.label :schedule_time, "Schedule Text Delivery Time" %>:
+      <%= f.time_select :schedule_time %><br />
     </p>
   </div>
 
   <div class="field">
+    <br />
+    <p>Recipient List:</p>
     <p>
       <%= collection_select(:task, :recipient_id, @recipients, :id, :name) %>
     </p>
@@ -31,6 +36,7 @@
 
 
   <div class="actions">
+    <br />
     <p>
       <%= f.submit "Submit" %>
     </p>
