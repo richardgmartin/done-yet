@@ -2,7 +2,13 @@ class Task < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :user
 
-  before_save :send_text_message
+  # before_save :send_text_message
+  before_save :schedule_sending_text
+
+
+  def schedule_sending_text
+    self.delay(run_at: self.schedule_time).send_text_message
+  end
 
   def send_text_message
     number_to_send_to = recipient.phone

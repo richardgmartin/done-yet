@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   def receive_text
 
     @message_body = params["Body"]
-    # "13"
+
     @from_number = params["From"]
 
     @task = Task.find(@message_body)
@@ -35,7 +35,6 @@ class TasksController < ApplicationController
 
     render nothing: true
 
-    # SMSLogger.log_text_message @from_number, @message_body
   end
 
   def edit
@@ -43,6 +42,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:activity, :message, :complete_date, :recipient_id)
+    params.require(:task).permit(:activity, :message, :schedule_date, :recipient_id)
   end
 end
