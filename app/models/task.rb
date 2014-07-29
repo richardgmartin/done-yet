@@ -3,7 +3,8 @@ class Task < ActiveRecord::Base
   belongs_to :user
 
   # before_save :send_text_message
-  before_save :schedule_sending_text
+  # after_save :schedule_sending_text, on: [:create], :unless => :schedule_time_changed?
+  after_save :schedule_sending_text
 
 
   def schedule_sending_text

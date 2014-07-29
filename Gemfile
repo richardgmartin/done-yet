@@ -35,6 +35,12 @@ gem 'twilio-ruby'
 # Use Figaro gem to protect credentials
 gem "figaro"
 
+# Use Delayed::Job gem to manage schedule for texts
+gem 'delayed_job_active_record'
+
+# Use Daemons gem for Delayed Job gem
+gem 'daemons'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
