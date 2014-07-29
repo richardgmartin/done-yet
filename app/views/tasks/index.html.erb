@@ -7,7 +7,11 @@
     <p>Recipient: <%= t.recipient.name %></p>
     <p>Task: <%= t.activity %></p>
     <p>Task Message: <%= t.message %></p>
-    <p>Text Delivery Date: <%= t.schedule_time %></p>
+    <p>Text Delivery Date:
+      <% if t.schedule_time %>
+        <%=  t.schedule_time.strftime('%e %B %Y %m:%M %p') %>
+      <% end %>
+    </p>
     <p>Status: <%= t.completed %></p>
     <hr />
   <% end %>
