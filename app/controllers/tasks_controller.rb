@@ -22,22 +22,28 @@ class TasksController < ApplicationController
   end
 
   def receive_text
-
     @message_body = params["Body"]
-
     @from_number = params["From"]
-
     @task = Task.find(@message_body)
-
     @task.completed = true
-
     @task.save
-
     render nothing: true
-
   end
 
   def edit
+    @user = User.first
+    @recipients = @user.recipients
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+
+    if @task.update_attributes(task_params)
+      redirect_to tasks_path
+    else
+      render :edit
+    end
   end
 
   private

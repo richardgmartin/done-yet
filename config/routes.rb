@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks, :only => [:new, :create, :edit, :index]
+  resources :tasks, :only => [:new, :create, :edit, :index, :update]
 
   get 'tasks/receive_text' => 'tasks#receive_text'
 

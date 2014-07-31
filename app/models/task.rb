@@ -27,4 +27,10 @@ class Task < ActiveRecord::Base
     )
   end
 
+  # def schedule_time=(new_time)
+  #   self.schedule_time=new_time
+  #   self.delayed_job.run_at=new_time
+  #   Delayed::Job.
+  # end
+
 end
