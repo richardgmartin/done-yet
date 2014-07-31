@@ -9,6 +9,7 @@
     <p>Task Message: <%= t.message %></p>
     <p>Text Delivery Date:
       <% if t.schedule_time %>
+        <%=  t.schedule_time %><br />
         <%=  t.schedule_time.strftime('%e %B %Y %m:%M %p') %>
       <% end %>
     </p>

@@ -1,14 +1,28 @@
 class Task < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :user
+  # has_one :job, foreign_key: 'delayed_job_id', class_name: 'Delayed::Job'
 
   # before_save :send_text_message
   # after_save :schedule_sending_text, on: [:create], :unless => :schedule_time_changed?
   after_create :schedule_sending_text
+  before_save :change_run_at
 
 
   def schedule_sending_text
-    self.delay(run_at: self.schedule_time).send_text_message
+    job = self.delay(run_at: self.schedule_time).send_text_message
+    update_column(:delayed_job_id, job.id)
+  end
+
+  def change_run_at
+    # delayed_job.run_at = schedule_time
+    if schedule_time_changed? && !new_record?
+      delayed_job.update_column(:run_at, schedule_time)
+    end
+  end
+
+  def delayed_job
+    Delayed::Job.find(delayed_job_id)
   end
 
   def send_text_message
@@ -26,11 +40,5 @@ class Task < ActiveRecord::Base
       :body => message
     )
   end
-
-  # def schedule_time=(new_time)
-  #   self.schedule_time=new_time
-  #   self.delayed_job.run_at=new_time
-  #   Delayed::Job.
-  # end
 
 end
