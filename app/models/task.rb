@@ -1,13 +1,12 @@
 class Task < ActiveRecord::Base
   belongs_to :recipient
   belongs_to :user
-  # has_one :job, foreign_key: 'delayed_job_id', class_name: 'Delayed::Job'
-
-  # before_save :send_text_message
-  # after_save :schedule_sending_text, on: [:create], :unless => :schedule_time_changed?
   after_create :schedule_sending_text
   before_save :change_run_at
 
+  # has_one :job, foreign_key: 'delayed_job_id', class_name: 'Delayed::Job'
+  # before_save :send_text_message
+  # after_save :schedule_sending_text, on: [:create], :unless => :schedule_time_changed?
 
   def schedule_sending_text
     job = self.delay(run_at: self.schedule_time).send_text_message
